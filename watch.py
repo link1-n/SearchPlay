@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 from justwatch import JustWatch
+import json
+import requests
 jw=JustWatch(country='IN')
 source=jw.get_providers()
 sourceN=len(source)
@@ -36,6 +38,11 @@ offerType={
         "flatrate":"Stream",
         "free":"Free"
         }
+imdb_key="b02ef8fd"
+imdb_url="http://www.omdbapi.com/"
+imdb_headers={
+        "apikey":imdb_key
+        }
 #print(results)
 q=input("Enter the name of the title you want to search for:\n")
 results = jw.search_for_item(query=q)
@@ -65,6 +72,28 @@ else:
 ind=int(input("Enter the index of the title you want to watch:\n"))
 ind=ind-1
 oLen=len(results['items'][ind]['offers'])
+imdb_headers['t']=results['items'][ind]['title']
+imdb_headers['y']=results['items'][ind]['original_release_year']
+imdb=requests.get(imdb_url, params=imdb_headers)
+#print(imdb, imdb.url)
+imdb_j=imdb.json()
+#print(imdb_j)
+title=imdb_j['Title']
+year=imdb_j['Year']
+rating=imdb_j['Rated']
+synopsis=imdb_j['Plot']
+lang=imdb_j['Language']
+cast=imdb_j['Actors']
+tomatometer=imdb_j['Ratings'][1]['Value']
+imdb_rate=imdb_j['imdbRating']
+imdb_ratevote=imdb_j['imdbVotes']
+content_type=imdb_j['Type']
+print(f"\n\n{title}\n\nRelease Year: {year}\tMaturity Rating: {rating}\n\nLanguage:{lang}\n\n")
+if content_type=="series":
+    seasonN=imdb_j['totalSeasons']
+    print(f"Number of Seasons: {seasonN}\n\n")
+print(f"IMDb Rating: {imdb_rate} from {imdb_ratevote} votes.\n\n")
+print(f"{synopsis}\n\n")
 print("Found {0} offers. Displaying all.".format(oLen))
 starline="*"*37
 print(starline)
