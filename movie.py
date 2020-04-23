@@ -6,7 +6,7 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 
 cprint(figlet_format('SearchPlay', font='standard'),
-       'yellow', 'on_red', attrs=['bold'])
+       'cyan', attrs=['bold'])
 ask = str(input('\n\nEnter 1 if you want to stream.\nEnter 2 if you torrent.\n'))
 if ask == '2':
     call(["python", "torrent.py"])
