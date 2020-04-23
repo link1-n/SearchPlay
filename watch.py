@@ -78,11 +78,20 @@ else:
         print("{:<8d}{:<50s}{:<8s}{:<5d}".format(i + 1, itemTitle, itemType, itemYear))
 ind = int(input("Enter the index of the title you want to watch:"))
 ind = ind - 1
-oLen = len(results['items'][ind]['offers'])
+try:
+    oLen = len(results['items'][ind]['offers'])
+except:
+    print("Sorry, the title you have entered is not being streamed\n or sold anywhere. You can try to search for it in our Torrents Section.")
+    exit()
 imdb_headers['t'] = results['items'][ind]['title']
 imdb_headers['y'] = results['items'][ind]['original_release_year']
 imdb = requests.get(imdb_url, params=imdb_headers)
+'''print("...")
+time.sleep(8)'''
 # print(imdb, imdb.url)
+if imdb != "<Response [200]>":
+    print("It looks like we cannot reach the servers at the moment, please check your internet connection or try again later. Thank you.")
+    exit()
 imdb_j = imdb.json()
 # print(imdb_j)
 title = imdb_j['Title']
@@ -92,6 +101,7 @@ synopsis = imdb_j['Plot']
 lang = imdb_j['Language']
 cast = imdb_j['Actors']
 # tomatometer = imdb_j['Ratings'][1]['Value']
+# Can't get Rotten Tomatoes to work, will try to update it in the future.
 imdb_rate = imdb_j['imdbRating']
 imdb_ratevote = imdb_j['imdbVotes']
 content_type = imdb_j['Type']
@@ -117,8 +127,8 @@ for i in range(oLen):
 
 def get_ID():
     try:
-        imdb_key = "b02ef8fd"
-        imdb_url = "http://www.omdbapi.com/?"
+       # imdb_key = "b02ef8fd"
+       # imdb_url = "http://www.omdbapi.com/?"
         url = "http://www.omdbapi.com/"
         headers = {"t": 0, "apikey": imdb_key}
         headers["t"] = movie_title
