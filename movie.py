@@ -11,12 +11,22 @@ def run():
     if ask == 'Torrent':
         call(["python", "torrent.py"])
         print('\n\nScript made by u/link1-n and u/sp1nalcord.')
+    if ask == 'torrent':
+        call(["python", "torrent.py"])
+        print('\n\nScript made by u/link1-n and u/sp1nalcord.')
+    if ask == 'TORRENT':
+        call(["python", "torrent.py"])
+        print('\n\nScript made by u/link1-n and u/sp1nalcord.')
     else:
         call(["python", "watch.py"])
         print('\n\nScript made by u/link1-n and u/sp1nalcord.')
 
     ask_again = str(input('Do you want to run again?'))
-    if ask_again=='yes' or 'YES' or 'Yes':
+    if ask_again == 'yes':
+        run()
+    if ask_again == 'Yes':
+        run()
+    if ask_again == 'YES':
         run()
     else:
         print('')
