@@ -175,7 +175,7 @@ def get_magnet():
 
                 print('\nShowing results: \n')
                 time.sleep(1)
-                print(tabulate(df, headers='keys', tablefmt='psql'))
+                print(tabulate(df.head(10), headers='keys', tablefmt='psql'))
                 '''show_more = str(input("Do you want to show more results? Type YES or NO."))
                 if show_more == 'YES' or 'yes':
                     print(tabulate(df, headers='keys', tablefmt='psql'))
