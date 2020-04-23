@@ -83,34 +83,39 @@ try:
 except:
     print("Sorry, the title you have entered is not being streamed\n or sold anywhere. You can try to search for it in our Torrents Section.")
     exit()
-imdb_headers['t'] = results['items'][ind]['title']
-imdb_headers['y'] = results['items'][ind]['original_release_year']
-imdb = requests.get(imdb_url, params=imdb_headers)
-'''print("...")
-time.sleep(8)'''
-# print(imdb, imdb.url)
-if imdb != "<Response [200]>":
-    print("It looks like we cannot reach the servers at the moment, please check your internet connection or try again later. Thank you.")
-    exit()
-imdb_j = imdb.json()
-# print(imdb_j)
-title = imdb_j['Title']
-year = imdb_j['Year']
-rating = imdb_j['Rated']
-synopsis = imdb_j['Plot']
-lang = imdb_j['Language']
-cast = imdb_j['Actors']
-# tomatometer = imdb_j['Ratings'][1]['Value']
-# Can't get Rotten Tomatoes to work, will try to update it in the future.
-imdb_rate = imdb_j['imdbRating']
-imdb_ratevote = imdb_j['imdbVotes']
-content_type = imdb_j['Type']
-print(f"\n\n{title}\n\nRelease Year: {year}\tMaturity Rating: {rating}Language:{lang}")
-if content_type == "series":
-    seasonN = imdb_j['totalSeasons']
-    print(f"Number of Seasons: {seasonN}")
-print(f"IMDb Rating: {imdb_rate} from {imdb_ratevote} votes.")
-print(f"{synopsis}")
+try:
+    imdb_headers['t'] = results['items'][ind]['title']
+    imdb_headers['y'] = results['items'][ind]['original_release_year']
+    imdb = requests.get(imdb_url, params=imdb_headers)
+    '''print("...")
+    time.sleep(8)'''
+    #print(imdb, imdb.url)
+
+    #if imdb != "<Response [200]>":
+    #   print("It looks like we cannot reach the servers at the moment, please check your internet connection or try again later. Thank you.")
+    #   exit()
+    imdb_j = imdb.json()
+    # print(imdb_j)
+    title = imdb_j['Title']
+    year = imdb_j['Year']
+    rating = imdb_j['Rated']
+    synopsis = imdb_j['Plot']
+    lang = imdb_j['Language']
+    cast = imdb_j['Actors']
+    #tomatometer = imdb_j['Ratings'][1]['Value']
+    # Can't get Rotten Tomatoes to work, will try to update it in the future.
+    imdb_rate = imdb_j['imdbRating']
+    imdb_ratevote = imdb_j['imdbVotes']
+    content_type = imdb_j['Type']
+    print(f"\n\n{title}\n\nRelease Year: {year}\tMaturity Rating: {rating}Language:{lang}")
+    if content_type == "series":
+        seasonN = imdb_j['totalSeasons']
+        print(f"Number of Seasons: {seasonN}")
+    print(f"IMDb Rating: {imdb_rate} from {imdb_ratevote} votes.")
+    print(f"{synopsis}")
+except:
+    print("We can't reach the IMDb servers, please check your internet connection or try again later")
+    pass
 print("\n\nFound {0} offers. Displaying all.".format(oLen))
 starline = "*" * 37
 print(starline)
