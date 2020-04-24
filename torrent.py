@@ -8,7 +8,7 @@ import pyperclip
 #from movie import input_query_
 import time
 
-input_query = str(input('Please enter what you want to search for. '))
+input_query = str(input('Please enter what you want to search for:\n->'))
 # input_query = str(input('Please enter what you want to search for. '))
 movie_title = ' '.join(word[0].upper() + word[1:] for word in input_query.split())
 

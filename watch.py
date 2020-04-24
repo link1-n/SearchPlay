@@ -48,7 +48,7 @@ imdb_headers = {
 }
 # print(results)
 # q = input("Enter the name of the title you want to search for:\n")
-q = str(input('Please enter what you want to search for. '))
+q = str(input('Please enter what you want to search for:\n->'))
 movie_title = ' '.join(word[0].upper() + word[1:] for word in q.split())
 results = jw.search_for_item(query=q)
 totalR = int(results['total_results'])
@@ -76,12 +76,12 @@ else:
         itemType = results['items'][i]['object_type']
         itemYear = results['items'][i]['original_release_year']
         print("{:<8d}{:<50s}{:<8s}{:<5d}".format(i + 1, itemTitle, itemType, itemYear))
-ind = int(input("Enter the index of the title you want to watch:"))
+ind = int(input("Enter the index of the title you want to watch:\n->"))
 ind = ind - 1
 try:
     oLen = len(results['items'][ind]['offers'])
 except:
-    print("Sorry, the title you have entered is not being streamed\n or sold anywhere. You can try to search for it in our Torrents Section.")
+    print("Sorry, the title you have entered is not being streamed or sold anywhere. You can try to search for it in our Torrents Section.")
     exit()
 try:
     imdb_headers['t'] = results['items'][ind]['title']
@@ -107,16 +107,16 @@ try:
     imdb_rate = imdb_j['imdbRating']
     imdb_ratevote = imdb_j['imdbVotes']
     content_type = imdb_j['Type']
-    print(f"\n\n{title}\n\nRelease Year: {year}\tMaturity Rating: {rating}Language:{lang}")
+    print(f"\n\n{title}\n\nRelease Year: {year}\tMaturity Rating: {rating}\nLanguage: {lang}")
     if content_type == "series":
         seasonN = imdb_j['totalSeasons']
         print(f"Number of Seasons: {seasonN}")
-    print(f"IMDb Rating: {imdb_rate} from {imdb_ratevote} votes.")
+    print(f"IMDb Rating: {imdb_rate} from {imdb_ratevote} votes.\n")
     print(f"{synopsis}")
 except:
     print("We can't reach the IMDb servers, please check your internet connection or try again later")
     pass
-print("\n\nFound {0} offers. Displaying all.".format(oLen))
+print("\n\nFound {0} offers. Displaying all:\n".format(oLen))
 starline = "*" * 37
 print(starline)
 print("{:20}{:<10}{:<5}".format("Provider", "Type", "Quality"))
