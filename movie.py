@@ -8,8 +8,7 @@ from pyfiglet import figlet_format
 cprint(figlet_format('SearchPlay', font='standard'), 'cyan', attrs=['bold', 'underline', 'dark','concealed'])
 def run():
     ask = str(input("\nEnter 'Stream' if you want to stream.\nEnter 'Torrent' if you torrent.\n"))
-    answer_ = ['TORRENT', 'Torrent', 'torrent']
-    if ask in answer_:
+    if ask.lower() == 'torrent':
         call(["python", "torrent.py"])
         print('\n\nScript made by u/link1-n and u/sp1nalcord.')
     else:
@@ -17,8 +16,7 @@ def run():
         print('\n\nScript made by u/link1-n and u/sp1nalcord.')
 
     ask_again = str(input('Do you want to run again?'))
-    answer = ['YES', 'yes', 'Yes']
-    if ask_again in answer:
+    if ask_again.lower() == 'yes':
         run()   
     else:
         print('')
