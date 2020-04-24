@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 from bs4 import BeautifulSoup
 import requests
 import re
@@ -5,6 +7,13 @@ import pandas as pd
 import datetime
 from tabulate import tabulate
 import pyperclip
+
+#on linux, pyperclip will work when
+#either xsel or xclip are installed
+#do "sudo apt-get install xsel" you can replace xsel with xclip
+#if it still doesn't work, go to the link below
+# https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error
+
 #from movie import input_query_
 import time
 
