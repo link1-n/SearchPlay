@@ -41,7 +41,7 @@ offerType = {
     "flatrate": "Stream",
     "free": "Free"
 }
-imdb_key = "b02ef8fd"
+imdb_key = "api key"
 imdb_url = "http://www.omdbapi.com/"
 imdb_headers = {
     "apikey": imdb_key
