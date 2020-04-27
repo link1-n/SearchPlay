@@ -6,6 +6,7 @@ import time
 import re
 
 jw = JustWatch(country='IN')
+# change the region according to your country
 source = jw.get_providers()
 sourceN = len(source)
 sourceL = {
@@ -42,6 +43,8 @@ offerType = {
     "free": "Free"
 }
 imdb_key = "api key"
+# change 'api key' to the api key you get from
+# http://www.omdbapi.com/apikey.aspx
 imdb_url = "http://www.omdbapi.com/"
 imdb_headers = {
     "apikey": imdb_key
