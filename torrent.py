@@ -199,7 +199,7 @@ def get_magnet():
                 magnet_link = []
                 for link in magnet_result:
                     magnet_link.append(link['href'])
-                download_link = magnet_link[index]
+                download_link = magnet_link[index-1]
 
                 print(f'\nYour selected movie: {name_movie}Size: {size_movie}')
                 time.sleep(1)
